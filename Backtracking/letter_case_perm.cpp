@@ -1,22 +1,25 @@
 class Solution {
 public:
-    void solve(vector<string> ans,string s,int i){
-        if(i==current.size()-1){
-            ans.push_back(s);
+    void solve(string S, vector<string>&ans,int i) {
+        if(i == S.size()) { // base condition
+            ans.push_back(S);
             return;
         }
-       if(isalpha(s[i])) { 
-            s[i] = toupper(s[i]);
-            solve(s,ans,i+1);
-            s[i] = tolower(s[i]);
-            solve(s,ans,i+1);
+        
+        if(isalpha(S[i])) { // if the scanned character is alphabet
+            S[i] = toupper(S[i]);
+            solve(S,ans,i+1);
+            S[i] = tolower(S[i]);
+            solve(S,ans,i+1);
         }
-        else { 
-            solve(s,ans,i+1);
+        else { // if the scanned character is number
+            solve(S,ans,i+1);
         }
     }
-    vector<string> letterCasePermutation(string s) {
+    vector<string> letterCasePermutation(string S) {
         vector<string>ans;
-        return solve(ans,s,0);
+        solve(S,ans,0);
+        return ans;
     }
+
 };
